@@ -1,4 +1,5 @@
 package org.example;
+
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -35,6 +36,21 @@ public class TicTacToe {
         }
 
         board.print();
+
+        if (!board.hasWinner()) {
+            System.out.println("It's a tie!");
+        } else {
+            System.out.println("Player " + currentPlayer.getMarker() + " wins!");
+        }
+    }
+
+    private Player switchCurrentPlayer() {
+        return (currentPlayer == player1) ? player2 : player1;
+    }
+
+    public static void main(String[] args) {
+        TicTacToe game = new TicTacToe();
+        game.start();
     }
 }
 
