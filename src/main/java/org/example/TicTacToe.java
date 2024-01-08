@@ -14,6 +14,9 @@ public class TicTacToe {
         board = new Board();
     }
 
+    public Board getBoard()
+    {return board;}
+
     public void start() {
         Scanner scanner = new Scanner(System.in);
         boolean gameWon = false;
