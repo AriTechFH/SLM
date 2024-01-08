@@ -34,8 +34,10 @@ public class TicTacToe {
                 } else {
                     System.out.println("Cell already occupied. Try again.");
                 }
+
+                board.print();
             }
-            board.print();
+
 
             System.out.println("Möchten Sie nocheinmal spielen? Y/N");
             playAgain = scanner.next();
