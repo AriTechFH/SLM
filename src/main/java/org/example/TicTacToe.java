@@ -42,7 +42,6 @@ public class TicTacToe {
 
         }while(playAgain.equals("Y"));
 
-
     }
 }
 
