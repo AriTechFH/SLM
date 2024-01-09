@@ -2,10 +2,10 @@ package org.example;
 import java.util.Scanner;
 
 public class TicTacToe {
-    private Player player1;
-    private Player player2;
+    private final Player player1;
+    private final Player player2;
     private Player currentPlayer;
-    private Board board;
+    private final Board board;
 
     public TicTacToe() {
         player1 = new Player('O');
@@ -17,10 +17,14 @@ public class TicTacToe {
     public Board getBoard()
     {return board;}
 
+    private Player switchCurrentPlayer() {
+        return (currentPlayer == player1) ? player2 : player1;
+    }
+
     public void start() {
         Scanner scanner = new Scanner(System.in);
         boolean gameWon = false;
-        String playAgain = "Y";
+        String playAgain;
 
         do{
             while (!gameWon) {
@@ -34,10 +38,13 @@ public class TicTacToe {
 
                 if (board.isCellEmpty(row, column)) {
                     board.place(row, column, currentPlayer.getMarker());
+                    gameWon = board.hasWinner();
+                    if (!gameWon) {
+                        currentPlayer = switchCurrentPlayer();
+                    }
                 } else {
                     System.out.println("Cell already occupied. Try again.");
                 }
-
                 board.print();
             }
 
