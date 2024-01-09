@@ -17,6 +17,10 @@ public class TicTacToe {
     public Board getBoard()
     {return board;}
 
+    private Player switchCurrentPlayer() {
+        return (currentPlayer == player1) ? player2 : player1;
+    }
+
     public void start() {
         Scanner scanner = new Scanner(System.in);
         boolean gameWon = false;
@@ -34,10 +38,13 @@ public class TicTacToe {
 
                 if (board.isCellEmpty(row, column)) {
                     board.place(row, column, currentPlayer.getMarker());
+                    gameWon = board.hasWinner();
+                    if (!gameWon) {
+                        currentPlayer = switchCurrentPlayer();
+                    }
                 } else {
                     System.out.println("Cell already occupied. Try again.");
                 }
-
                 board.print();
             }
 
